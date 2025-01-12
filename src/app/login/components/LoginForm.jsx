@@ -4,22 +4,35 @@ import { signIn } from "next-auth/react";
 
 import { FaFacebookF, FaLinkedinIn, FaGoogle } from "react-icons/fa";
 import Link from "next/link";
-//import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function LoginForm() {
-  //const router = useRouter();
+  const router = useRouter();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
+    toast("Submitting ....");
     try {
-      await signIn("credentials", { email, password, callbackUrl: "/" });
-      //router.push("/");
+      const response = await signIn("credentials", {
+        email,
+        password,
+        callbackUrl: "/",
+        redirect: false,
+      });
+      if (response.ok) {
+        toast.success("Logged In successfully");
+        router.push("/");
+        form.reset();
+      } else {
+        toast.error("FAILED to Log In");
+      }
       //console.log({ email, password });
     } catch (error) {
       console.log(error);
-      alert("Authentication Failed");
+      toast.error("FAILED to Log In");
     }
   };
   return (
