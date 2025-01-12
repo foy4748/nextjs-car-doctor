@@ -1,6 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* 
+* {
+  border: 1px solid red;
+}
+
+body {
+  border: 2px dashed blue;
+} */
 
 .overlay-bg {
   background: rgb(255, 255, 255);

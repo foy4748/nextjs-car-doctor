@@ -61,6 +61,14 @@ export default function NavBar() {
           <ul className="menu menu-horizontal px-1">{navMenu()}</ul>
         </div>
         <div className="navbar-end">
+          <ul className="menu menu-horizontal px-1">
+            <li>
+              <Link href={"/register"}>Register</Link>
+            </li>
+            <li>
+              <Link href={"/login"}>Login</Link>
+            </li>
+          </ul>
           <a className="btn btn-outline">Appointment</a>
         </div>
       </div>
