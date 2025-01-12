@@ -6,7 +6,7 @@ import React from "react";
 
 export default function NavBar() {
   const { data: session, status } = useSession();
-
+  console.log(session);
   const navMenu = () => {
     return (
       <>
@@ -73,6 +73,14 @@ export default function NavBar() {
           <ul className="menu menu-horizontal px-1">
             {status == "authenticated" ? (
               <>
+                <li>
+                  <Image
+                    src={session?.user?.image}
+                    width={50}
+                    height={50}
+                    alt="user-logo"
+                  />
+                </li>
                 <li onClick={() => signOut()}>Log Out</li>
               </>
             ) : (

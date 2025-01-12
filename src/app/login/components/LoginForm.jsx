@@ -1,11 +1,12 @@
 "use client";
 import React from "react";
 import { signIn } from "next-auth/react";
-
-import { FaFacebookF, FaLinkedinIn, FaGoogle } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa6";
+import { FaGoogle } from "react-icons/fa";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import SocialLogin from "./SocialLogin";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -63,17 +64,7 @@ export default function LoginForm() {
         Sign In
       </button>
       <p className="text-center">Or Sign In with</p>
-      <div className="flex justify-center gap-8">
-        <p className="bg-slate-200 rounded-full p-3">
-          <FaFacebookF />
-        </p>
-        <p className="bg-slate-200 rounded-full p-3">
-          <FaLinkedinIn />
-        </p>
-        <p className="bg-slate-200 rounded-full p-3">
-          <FaGoogle />
-        </p>
-      </div>
+      <SocialLogin />
       <p className="text-center">
         Already have an account?{" "}
         <Link href="/register" className="text-orange-500 font-bold">
