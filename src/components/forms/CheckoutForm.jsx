@@ -1,10 +1,12 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import React from "react";
 import toast from "react-hot-toast";
 
 const CheckoutForm = ({ data }) => {
-  console.log(data);
+  const { data: session } = useSession();
+  console.log(session);
 
   const handleBookService = async (e) => {
     toast("Submitting Booking...");
@@ -17,26 +19,36 @@ const CheckoutForm = ({ data }) => {
     const address = form.address.value;
     const email = form.email.value;
     const bookingPayload = {
+      // Session
       customerName: name,
       email,
 
+      // User Inputs
       date,
       phone,
       address,
-      service: data?.title,
-      service_id: data?._id,
-      img: data?.img,
-      price: data?.price,
+
+      // Extra information
+      service_id: data._id,
+      service_name: data.title,
+      service_img: data.img,
+      service_price: data.price,
     };
 
     console.log(bookingPayload);
+    const res = await fetch("http://localhost:3000/api/service", {
+      method: "POST",
+      body: JSON.stringify(bookingPayload),
+    });
+    const postedResponse = await res.json();
+    console.log("POSTED DATA", postedResponse);
   };
 
   return (
     <div className="my-10">
       <div className="w-11/12 mx-auto">
         <h2 className="text-center text-3xl mb-4">
-          Book Service: {data?.title}{" "}
+          Book Service : {data?.title}
         </h2>
         <form onSubmit={handleBookService}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -44,19 +56,22 @@ const CheckoutForm = ({ data }) => {
               <label className="label">
                 <span className="label-text">Name</span>
               </label>
-              <input type="text" name="name" className="input input-bordered" />
+              <input
+                defaultValue={session?.user?.name}
+                readOnly
+                type="text"
+                name="name"
+                className="input input-bordered"
+              />
             </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Date</span>
-              </label>
-              <input type="date" name="date" className="input input-bordered" />
-            </div>
+
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
               <input
+                defaultValue={session?.user?.email}
+                readOnly
                 type="text"
                 name="email"
                 placeholder="email"
@@ -69,9 +84,17 @@ const CheckoutForm = ({ data }) => {
               </label>
               <input
                 type="text"
+                defaultValue={data?.price}
+                readOnly
                 name="price"
                 className="input input-bordered"
               />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Date</span>
+              </label>
+              <input type="date" name="date" className="input input-bordered" />
             </div>
             <div className="form-control">
               <label className="label">

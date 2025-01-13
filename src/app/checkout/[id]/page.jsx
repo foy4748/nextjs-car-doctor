@@ -7,7 +7,8 @@ export default async function CheckoutPage({ params }) {
   const data = await res.json();
   return (
     <div>
-      <CheckoutForm />
+      <CheckoutForm data={data} />
+      <p>{JSON.stringify(data)}</p>
     </div>
   );
 }
