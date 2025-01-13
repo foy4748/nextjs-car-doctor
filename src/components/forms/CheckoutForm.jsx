@@ -3,7 +3,7 @@
 import React from "react";
 import toast from "react-hot-toast";
 
-const BookingForm = ({ data }) => {
+const CheckoutForm = ({ data }) => {
   console.log(data);
 
   const handleBookService = async (e) => {
@@ -109,4 +109,4 @@ const BookingForm = ({ data }) => {
   );
 };
 
-export default BookingForm;
+export default CheckoutForm;
