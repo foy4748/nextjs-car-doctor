@@ -1,7 +1,7 @@
 "use client";
+import DeleteBookingButton from "@/app/my-bookings/components/DeleteBookingButton";
 import Image from "next/image";
 import { FaRegEdit } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
 
 const MyAllBookings = ({ data }) => {
   return (
@@ -39,7 +39,7 @@ const MyAllBookings = ({ data }) => {
                   </td>
 
                   <td>
-                    <MdDelete className="h-8 w-8 font-bold" />
+                    <DeleteBookingButton id={item._id} />
                   </td>
                 </tr>
               );
