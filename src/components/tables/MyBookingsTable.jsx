@@ -1,6 +1,6 @@
-"use client";
 import DeleteBookingButton from "@/app/my-bookings/components/DeleteBookingButton";
 import Image from "next/image";
+import Link from "next/link";
 import { FaRegEdit } from "react-icons/fa";
 
 const MyAllBookings = ({ data }) => {
@@ -35,7 +35,9 @@ const MyAllBookings = ({ data }) => {
                   <td>{item.date}</td>
                   <td>{item.service_price}</td>
                   <td>
-                    <FaRegEdit className="h-8 w-8 font-bold" />
+                    <Link href={`/my-bookings/${item._id}`}>
+                      <FaRegEdit className="h-8 w-8 font-bold" />
+                    </Link>
                   </td>
 
                   <td>
