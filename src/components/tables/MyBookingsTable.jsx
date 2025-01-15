@@ -15,6 +15,8 @@ const MyAllBookings = ({ data }) => {
               <th>Service Name</th>
               <th>Service Date</th>
               <th>Service Price</th>
+              <th>Phone</th>
+              <th>Address</th>
               <th> </th>
               <th> </th>
             </tr>
@@ -34,6 +36,8 @@ const MyAllBookings = ({ data }) => {
                   <td>{item.service_name}</td>
                   <td>{item.date}</td>
                   <td>{item.service_price}</td>
+                  <td>{item.phone}</td>
+                  <td>{item.address}</td>
                   <td>
                     <Link href={`/my-bookings/${item._id}`}>
                       <FaRegEdit className="h-8 w-8 font-bold" />
