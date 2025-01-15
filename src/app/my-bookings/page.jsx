@@ -7,7 +7,7 @@ import React from "react";
 
 const fetchMyBookings = async () => {
   const res = await fetch("http://localhost:3000/api/service", {
-    headers: headers(),
+    headers: await headers(),
   });
   const d = await res.json();
   //setData(d);
