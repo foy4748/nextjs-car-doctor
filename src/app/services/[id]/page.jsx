@@ -4,7 +4,9 @@ import Link from "next/link";
 
 export default async function ServiceDetailsPage({ params }) {
   const p = await params;
-  const res = await fetch(`http://localhost:3000/api/service/${p.id}`);
+  const res = await fetch(
+    `https://nextjs-car-doctor-kappa.vercel.app/api/service/${p.id}`
+  );
   const data = await res.json();
   return (
     <div className="container mx-auto">
